@@ -389,9 +389,9 @@ li {
   align-items: center;
 }
 
-/* スクリーンリーダーに読まれないよう aria-hidden 相当の空装飾指定 */
+/* 装飾用矢印（古いブラウザ・環境でも安定動作する標準指定） */
 .breadcrumb li + li::before {
-  content: "›" / "";
+  content: "›";
   margin: 0 0.5rem;
   color: var(--color-text-muted);
   font-weight: 700;
@@ -649,7 +649,7 @@ li {
 }
 
 .link-list a::after {
-  content: "›" / ""; /* スクリーンリーダー読み上げ防止 */
+  content: "›";
   position: absolute;
   right: 0.5rem;
   top: 50%;
@@ -765,11 +765,16 @@ textarea:disabled {
   cursor: not-allowed;
 }
 
-/* エラー時の入力枠 */
+/* エラー時の入力枠 (親に .is-error が付く場合も、要素自身に付く場合も網羅) */
 .is-error input,
 .is-error select,
 .is-error textarea,
-input[aria-invalid="true"] {
+input.is-error,
+select.is-error,
+textarea.is-error,
+input[aria-invalid="true"],
+select[aria-invalid="true"],
+textarea[aria-invalid="true"] {
   border-color: var(--color-error) !important;
   background-color: #fffafb;
 }
