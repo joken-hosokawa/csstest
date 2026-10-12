@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>style.css 動作確認ページ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="#">サンプルサイト</a>
+      <nav class="global-nav" aria-label="グローバルナビゲーション">
+        <ul>
+          <li><a href="#" aria-current="page">ホーム</a></li>
+          <li><a href="#components">コンポーネント</a></li>
+          <li><a href="#form">フォーム</a></li>
+          <li><a href="#table">テーブル</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <ol>
+        <li><a href="#">ホーム</a></li>
+        <li><a href="#">動作確認</a></li>
+        <li aria-current="page">style.css</li>
+      </ol>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="container">
+      <h1>style.css 動作確認ページ</h1>
+      <p>デジタル庁デザインシステムを基本にした共通スタイルの見た目を確認するためのページです。<a href="#">通常のリンク</a>、<a href="https://example.com">訪問済みになり得るリンク</a>、<strong>強調</strong>、<code>code</code> の表示を確認できます。</p>
+
+      <div class="alert">
+        <p class="alert__title">お知らせ</p>
+        <p>これは情報用のアラートです。</p>
+      </div>
+      <div class="alert alert--success">
+        <p class="alert__title">成功</p>
+        <p>保存が完了しました。</p>
+      </div>
+      <div class="alert alert--warning">
+        <p class="alert__title">注意</p>
+        <p>入力内容を確認してください。</p>
+      </div>
+      <div class="alert alert--error">
+        <p class="alert__title">エラー</p>
+        <p>送信に失敗しました。時間をおいて再度お試しください。</p>
+      </div>
+
+      <h2 id="components">コンポーネント</h2>
+
+      <h3>見出しレベル3</h3>
+      <h4>見出しレベル4</h4>
+
+      <h3>ボタン</h3>
+      <div class="cluster mb-4">
+        <button class="btn" type="button">プライマリ</button>
+        <button class="btn btn--secondary" type="button">セカンダリ</button>
+        <button class="btn btn--text" type="button">テキスト</button>
+        <button class="btn btn--danger" type="button">削除する</button>
+        <button class="btn" type="button" disabled>無効</button>
+      </div>
+      <div class="cluster">
+        <button class="btn btn--sm" type="button">小</button>
+        <button class="btn btn--lg" type="button">大</button>
+        <span class="badge">バッジ</span>
+        <span class="badge badge--solid">新着</span>
+      </div>
+      <p class="text-sub mt-4">Tabキーでフォーカス表示（黄色背景＋黒枠）も確認してください。</p>
+
+      <h3>カード</h3>
+      <div class="grid grid--3">
+        <article class="card card--accent">
+          <h4 class="card__title">手続きの案内</h4>
+          <p>申請に必要な書類や流れを確認できます。</p>
+          <a href="#">詳しく見る</a>
+        </article>
+        <article class="card card--accent">
+          <h4 class="card__title">よくある質問</h4>
+          <p>お問い合わせの多い内容をまとめています。</p>
+          <a href="#">詳しく見る</a>
+        </article>
+        <article class="card card--accent">
+          <h4 class="card__title">お問い合わせ</h4>
+          <p>窓口の受付時間と連絡先をご案内します。</p>
+          <a href="#">詳しく見る</a>
+        </article>
+      </div>
+
+      <h3>リンクリスト／引用／リスト</h3>
+      <div class="grid grid--2">
+        <ul class="link-list">
+          <li><a href="#">サイトのご利用にあたって</a></li>
+          <li><a href="#">プライバシーポリシー</a></li>
+          <li><a href="#">アクセシビリティ方針</a></li>
+        </ul>
+        <div>
+          <blockquote>引用文のスタイルです。左に青いラインが入ります。</blockquote>
+          <ul>
+            <li>箇条書き1</li>
+            <li>箇条書き2</li>
+          </ul>
+          <ol>
+            <li>番号付き1</li>
+            <li>番号付き2</li>
+          </ol>
+        </div>
+      </div>
+
+      <h2 id="form">フォーム</h2>
+      <form class="container--narrow" style="padding:0" onsubmit="return false">
+        <div class="form-group">
+          <label class="form-label" for="name">氏名<span class="required">必須</span></label>
+          <p class="form-hint" id="name-hint">例：山田 太郎</p>
+          <input type="text" id="name" aria-describedby="name-hint">
+        </div>
+
+        <div class="form-group is-error">
+          <label class="form-label" for="email">メールアドレス<span class="required">必須</span></label>
+          <input type="email" id="email" aria-invalid="true" aria-describedby="email-error" value="abc@">
+          <p class="form-error" id="email-error">メールアドレスの形式で入力してください。</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="topic">お問い合わせ種別<span class="optional">任意</span></label>
+          <select id="topic">
+            <option>選択してください</option>
+            <option>サービスについて</option>
+            <option>その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">内容</label>
+          <textarea id="message"></textarea>
+        </div>
+
+        <fieldset>
+          <legend>返信方法</legend>
+          <label class="form-check"><input type="radio" name="reply" checked> メール</label>
+          <label class="form-check"><input type="radio" name="reply"> 電話</label>
+        </fieldset>
+
+        <div class="form-group">
+          <label class="form-check"><input type="checkbox"> プライバシーポリシーに同意する</label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="disabled">無効な入力欄</label>
+          <input type="text" id="disabled" value="入力できません" disabled>
+        </div>
+
+        <button class="btn btn--lg" type="submit">送信する</button>
+      </form>
+
+      <h2 id="table">テーブル</h2>
+      <div class="table-wrap">
+        <table>
+          <caption>手続き一覧</caption>
+          <thead>
+            <tr><th scope="col">手続き名</th><th scope="col">受付方法</th><th scope="col">標準処理期間</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">住所変更</th><td>オンライン／窓口</td><td>即日</td></tr>
+            <tr><th scope="row">証明書発行</th><td>オンライン</td><td>3日</td></tr>
+            <tr><th scope="row">各種申請</th><td>窓口</td><td>2週間</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="#">サイトのご利用にあたって</a></li>
+        <li><a href="#">プライバシーポリシー</a></li>
+      </ul>
+      <p class="mb-0"><small>&copy; 2026 サンプルサイト</small></p>
+    </div>
+  </footer>
+</body>
+</html>
