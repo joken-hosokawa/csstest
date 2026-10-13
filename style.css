@@ -1,103 +1,76 @@
-/* ==========================================================================
-   joken.jp 共通スタイルシート
-   ベース仕様: デジタル庁デザインシステム (DADS) の考え方に沿ったユニバーサルデザイン
-   アクセシビリティ: WCAG 2.1 レベル AA を意識した配色・操作性
-   （主要な文字色・枠線のコントラスト比は実測で確認。ただし CSS だけで
-     準拠を保証するものではありません。実際の画面と支援技術で検証してください）
-   基本色を変えるときは、:root の --color-primary と --color-primary-rgb を
-   同じ色に揃えて更新してください。
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   デザイントークン (Design Tokens)
-   -------------------------------------------------------------------------- */
 :root {
-  /* プライマリーブルー系 */
-  --color-primary: #004ea2;              /* メインブランド色 (白文字比 8.0:1) */
-  --color-primary-rgb: 0, 78, 162;       /* rgba() 用。--color-primary と同じ色に揃える */
-  --color-primary-hover: #003772;        /* ホバー色 (白文字比 11.7:1) */
-  --color-primary-active: #00254c;       /* アクティブ（押下）色 */
-  --color-primary-light: #e6f0fa;        /* 10% tint (背景用) */
-  --color-primary-tint: #d8e8f8;         /* 淡色ボタンの押下色 */
-  --color-primary-surface: #f4f8fc;      /* 表面・薄い背景 */
-  --color-primary-border: #b9d8f3;       /* 淡い青の枠線 (装飾用) */
+  --color-primary: #004ea2;
+  --color-primary-rgb: 0, 78, 162;
+  --color-primary-hover: #003772;
+  --color-primary-active: #00254c;
+  --color-primary-light: #e6f0fa;
+  --color-primary-tint: #d8e8f8;
+  --color-primary-surface: #f4f8fc;
+  --color-primary-border: #b9d8f3;
 
-  /* ステータスカラー (実測コントラスト比: 文字色 / 白 と 文字色 / 各背景) */
-  --color-success: #006644;              /* 7.0:1 / 6.3:1 */
+  --color-success: #006644;
   --color-success-bg: #e6f6ee;
   --color-success-border: #a3e0c4;
-  --color-warning: #944a00;              /* 6.5:1 / 6.0:1 */
+  --color-warning: #944a00;
   --color-warning-bg: #fff5e6;
   --color-warning-border: #ffd8a8;
-  --color-error: #b5282a;                /* 6.4:1 / 5.4:1 */
-  --color-error-hover: #931f21;          /* 危険ボタンのホバー (白文字比 8.5:1) */
+  --color-error: #b5282a;
+  --color-error-hover: #931f21;
   --color-error-bg: #fde8e8;
-  --color-error-bg-strong: #fee2e2;      /* 必須チップ背景 (error 文字比 5.2:1) */
-  --color-error-bg-soft: #fffafb;        /* エラー入力欄の背景 */
+  --color-error-bg-strong: #fee2e2;
+  --color-error-bg-soft: #fffafb;
   --color-error-border: #fca5a5;
   --color-info: var(--color-primary);
   --color-info-bg: var(--color-primary-light);
 
-  /* フォーカスリング (フッターなど暗い背景では上書きする) */
   --focus-ring-color: var(--color-primary);
   --focus-ring-shadow: rgba(var(--color-primary-rgb), 0.25);
 
-  /* ニュートラル・テキストカラー */
-  --color-text-main: #1a1a1a;           /* 本文 (白背景比 17.4:1) */
-  --color-text-muted: #4d4d4d;          /* 補足 (白背景比 8.4:1) */
+  --color-text-main: #1a1a1a;
+  --color-text-muted: #4d4d4d;
   --color-text-inverse: #ffffff;
-  --color-link-visited: #5c248b;        /* 訪問済み (白背景比 10.1:1) */
-  --color-bg-page: #f9fafb;             /* 画面地色 */
-  --color-bg-surface: #ffffff;          /* カード・コンテナ白 */
-  --color-bg-muted: #f3f4f6;            /* 任意チップ・無効状態の背景 */
+  --color-link-visited: #5c248b;
+  --color-bg-page: #f9fafb;
+  --color-bg-surface: #ffffff;
+  --color-bg-muted: #f3f4f6;
   --color-bg-code: #edf2f7;
-  --color-bg-row-header: #fafbfd;       /* テーブル行見出しの背景 */
+  --color-bg-row-header: #fafbfd;
 
-  /* 境界線 */
-  --color-border: #d7d8d9;              /* 装飾・仕切り用 */
-  --color-border-dark: #8e9094;         /* フォーム入力枠用 (白背景比 3.2:1) */
+  --color-border: #d7d8d9;
+  --color-border-dark: #8e9094;
 
-  /* コードブロック */
   --color-pre-bg: #1e293b;
   --color-pre-text: #f8fafc;
 
-  /* フッター */
   --color-footer-bg: #1a1a1a;
-  --color-footer-text: #d7d8d9;         /* 12.2:1 */
-  --color-footer-muted: #8e9094;        /* 5.4:1 */
+  --color-footer-text: #d7d8d9;
+  --color-footer-muted: #8e9094;
 
-  /* タイポグラフィ */
   --font-family-base: "Noto Sans JP", "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Meiryo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-family-mono: "Consolas", "Courier New", monospace;
 
-  /* 文字サイズ & 行間 (ブラウザの文字サイズ変更に追従する rem 指定) */
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.25rem;    /* 20px */
-  --font-size-2xl: 1.5rem;    /* 24px */
-  --font-size-3xl: 2rem;      /* 32px */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
 
   --line-height-tight: 1.35;
   --line-height-relaxed: 1.75;
 
-  /* レイアウト */
   --container-max: 1120px;
   --container-narrow-max: 720px;
   --radius-xs: 2px;
   --radius-sm: 4px;
 
-  /* 影 */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-btn: 0 2px 4px rgba(0, 0, 0, 0.08);
   --shadow-card-hover: 4px 6px 16px rgba(0, 50, 110, 0.12);
   --shadow-card-active: 2px 3px 8px rgba(0, 50, 110, 0.1);
 }
 
-/* --------------------------------------------------------------------------
-   リセット & ベーススタイル
-   -------------------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -106,13 +79,13 @@
 
 html {
   font-family: var(--font-family-base);
-  font-size: 100%; /* ユーザーのブラウザ文字サイズ設定を尊重 */
+  font-size: 100%;
   line-height: var(--line-height-relaxed);
   color: var(--color-text-main);
   background-color: var(--color-bg-page);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  overflow-wrap: break-word; /* 長いURLや英単語の突き抜け防止 (grid は minmax(0, 1fr) で併用) */
+  overflow-wrap: break-word;
 }
 
 body {
@@ -126,7 +99,6 @@ main {
   padding-bottom: 4rem;
 }
 
-/* メディア要素の安全策 */
 img, svg, video {
   max-width: 100%;
   height: auto;
@@ -139,9 +111,6 @@ hr {
   margin: 2rem 0;
 }
 
-/* リンク
-   :where() で詳細度を 0 にし、.btn やナビなど各コンポーネントが
-   !important なしで色を上書きできるようにしている */
 :where(a) {
   color: var(--color-primary);
   text-decoration: underline;
@@ -155,7 +124,6 @@ hr {
   color: var(--color-link-visited);
 }
 
-/* 見出し (h1〜h6 の適切なサイズと余白) */
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-main);
   line-height: var(--line-height-tight);
@@ -252,10 +220,6 @@ li {
   margin-bottom: 0.35rem;
 }
 
-/* --------------------------------------------------------------------------
-   アクセシビリティ支援
-   -------------------------------------------------------------------------- */
-/* スクリーンリーダー専用隠しクラス */
 .visually-hidden {
   position: absolute !important;
   width: 1px !important;
@@ -268,15 +232,12 @@ li {
   border: 0 !important;
 }
 
-/* フォーカスインジケータ (キーボード操作時)
-   色は --focus-ring-color / --focus-ring-shadow で文脈ごとに差し替える */
 :focus-visible {
   outline: 2px solid var(--focus-ring-color);
   outline-offset: 2px;
   box-shadow: 0 0 0 3px var(--focus-ring-shadow);
 }
 
-/* スキップリンク */
 .skip-link {
   position: absolute;
   top: -100px;
@@ -294,7 +255,6 @@ li {
   top: 0;
 }
 
-/* アニメーション抑制設定 (prefers-reduced-motion) */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -304,9 +264,6 @@ li {
   }
 }
 
-/* --------------------------------------------------------------------------
-   レイアウトコンテナ & ユーティリティ
-   -------------------------------------------------------------------------- */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -336,9 +293,6 @@ li {
 }
 .text-center { text-align: center !important; }
 
-/* --------------------------------------------------------------------------
-   ヘッダー & ナビゲーション
-   -------------------------------------------------------------------------- */
 .site-header {
   background-color: var(--color-bg-surface);
   border-bottom: 2px solid var(--color-border);
@@ -348,7 +302,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 4.5rem; /* 文字拡大時にも崩れないよう min-height */
+  min-height: 4.5rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
@@ -379,7 +333,7 @@ li {
 .global-nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px; /* タップ領域 44px 以上 */
+  min-height: 44px;
   padding: 0 0.25rem;
   color: var(--color-text-main);
   text-decoration: none;
@@ -398,9 +352,6 @@ li {
   border-bottom-color: var(--color-primary);
 }
 
-/* --------------------------------------------------------------------------
-   パンくずリスト (Breadcrumb)
-   -------------------------------------------------------------------------- */
 .breadcrumb {
   padding: 1rem 0;
 }
@@ -420,8 +371,6 @@ li {
   align-items: center;
 }
 
-/* 装飾用矢印。1行目は非対応ブラウザ向け、2行目で読み上げ用の代替テキストを空にする
-   （非対応ブラウザは2行目を無視して1行目を使う） */
 .breadcrumb li + li::before {
   content: "›";
   content: "›" / "";
@@ -435,9 +384,6 @@ li {
   font-weight: 700;
 }
 
-/* --------------------------------------------------------------------------
-   アラートメッセージ (Alerts)
-   -------------------------------------------------------------------------- */
 .alert {
   padding: 1rem 1.25rem;
   border-radius: var(--radius-sm);
@@ -486,10 +432,6 @@ li {
   margin-bottom: 0;
 }
 
-/* --------------------------------------------------------------------------
-   ボタン (Buttons)
-   リンクの色は :where() で詳細度 0 にしてあるため、!important は不要
-   -------------------------------------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -502,7 +444,7 @@ li {
   border-radius: var(--radius-sm);
   text-decoration: none;
   cursor: pointer;
-  border: 2px solid var(--color-primary); /* 全種類 2px で揃え、並べたときのサイズ差を防ぐ */
+  border: 2px solid var(--color-primary);
   background-color: var(--color-primary);
   color: var(--color-text-inverse);
   line-height: var(--line-height-tight);
@@ -512,7 +454,6 @@ li {
   transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* ホバー時だけ、ごく薄い白ベールを重ねる (文字コントラストが下がらない範囲) */
 .btn::after {
   content: "";
   position: absolute;
@@ -538,7 +479,6 @@ li {
   border-color: var(--color-primary-active);
 }
 
-/* 無効状態 (button の disabled と、リンクの aria-disabled の両方) */
 .btn:disabled,
 .btn[aria-disabled="true"] {
   opacity: 0.5;
@@ -547,10 +487,9 @@ li {
   border-color: var(--color-border-dark);
 }
 .btn[aria-disabled="true"] {
-  pointer-events: none; /* リンクはクリック自体を無効にする */
+  pointer-events: none;
 }
 
-/* セカンダリボタン */
 .btn--secondary {
   background-color: var(--color-bg-surface);
   color: var(--color-primary);
@@ -568,7 +507,6 @@ li {
   color: var(--color-text-muted);
 }
 
-/* テキストボタン */
 .btn--text {
   background-color: transparent;
   color: var(--color-primary);
@@ -593,7 +531,6 @@ li {
   color: var(--color-text-muted);
 }
 
-/* 危険（削除）ボタン */
 .btn--danger {
   background-color: var(--color-error);
   border-color: var(--color-error);
@@ -605,7 +542,6 @@ li {
   border-color: var(--color-error-hover);
 }
 
-/* ボタンサイズ */
 .btn--sm {
   min-height: 38px;
   padding: 0.4rem 0.85rem;
@@ -617,9 +553,6 @@ li {
   font-size: var(--font-size-lg);
 }
 
-/* --------------------------------------------------------------------------
-   バッジ (Badges)
-   -------------------------------------------------------------------------- */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -637,14 +570,11 @@ li {
   color: var(--color-text-inverse);
 }
 
-/* --------------------------------------------------------------------------
-   グリッド & カード
-   -------------------------------------------------------------------------- */
 .grid {
   display: grid;
   gap: 1.5rem;
 }
-/* minmax(0, 1fr): 長い文字列でカラムが押し広げられるのを防ぐ */
+
 .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
@@ -668,8 +598,6 @@ li {
   margin-bottom: 0.5rem;
 }
 
-/* クリックできるカード専用 (カード内の最初のリンクをカード全体に広げる)
-   リンクを持たないカードにはホバー演出を付けない */
 .card--link {
   cursor: pointer;
 }
@@ -686,7 +614,7 @@ li {
 .card--link:active {
   box-shadow: var(--shadow-card-active);
 }
-/* フォーカス表示はリンク文字ではなくカード全体に出す */
+
 .card--link a:focus-visible {
   outline: none;
   box-shadow: none;
@@ -697,7 +625,6 @@ li {
   border-radius: var(--radius-sm);
 }
 
-/* リンクリスト */
 .link-list {
   list-style: none;
   margin: 0;
@@ -712,14 +639,13 @@ li {
 
 .link-list a {
   display: block;
-  padding: 0.85rem 2rem 0.85rem 0.5rem; /* 右矢印と重ならないパディング */
+  padding: 0.85rem 2rem 0.85rem 0.5rem;
   text-decoration: none;
   font-weight: 700;
   color: var(--color-text-main);
   position: relative;
 }
 
-/* 装飾用矢印 (1行目: 非対応ブラウザ向け / 2行目: 読み上げ対象外にする) */
 .link-list a::after {
   content: "›";
   content: "›" / "";
@@ -736,9 +662,6 @@ li {
   color: var(--color-primary);
 }
 
-/* --------------------------------------------------------------------------
-   フォーム (Forms)
-   -------------------------------------------------------------------------- */
 .form-group {
   margin-bottom: 1.75rem;
 }
@@ -785,7 +708,6 @@ li {
   margin-top: 0.4rem;
 }
 
-/* 全inputタイプを網羅 */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -800,14 +722,13 @@ textarea {
   padding: 0.75rem 1rem;
   font-size: var(--font-size-base);
   font-family: inherit;
-  border: 1.5px solid var(--color-border-dark); /* 非テキストコントラスト 3.2:1 */
+  border: 1.5px solid var(--color-border-dark);
   border-radius: var(--radius-sm);
   background-color: var(--color-bg-surface);
   color: var(--color-text-main);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* フォーカス時は枠線を青に。アウトラインとリングは共通の :focus-visible が担当する */
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
@@ -835,8 +756,6 @@ textarea:disabled {
   cursor: not-allowed;
 }
 
-/* エラー時の入力枠 (親に .is-error が付く場合も、要素自身に付く場合も網羅)
-   色だけに頼らないよう枠線を 2px に太くし、padding を 0.5px ずつ減らして高さのズレを防ぐ */
 .is-error input,
 .is-error select,
 .is-error textarea,
@@ -866,7 +785,6 @@ legend {
   font-size: var(--font-size-base);
 }
 
-/* タップ領域 44px 以上を確保 */
 .form-check {
   display: inline-flex;
   align-items: center;
@@ -886,11 +804,6 @@ legend {
   cursor: pointer;
 }
 
-/* --------------------------------------------------------------------------
-   テーブル (Tables)
-   横スクロールするため、HTML 側で .table-wrap に
-   role="region" tabindex="0" aria-label="表の名前" を付けるとキーボードで操作できる
-   -------------------------------------------------------------------------- */
 .table-wrap {
   overflow-x: auto;
   border: 1px solid var(--color-border);
@@ -934,14 +847,10 @@ tbody th[scope="row"] {
   background-color: var(--color-bg-row-header);
 }
 
-/* 行全体 (th も含む) をホバー表示。th の背景指定より後ろに書くこと */
 tbody tr:hover > * {
   background-color: var(--color-primary-surface);
 }
 
-/* --------------------------------------------------------------------------
-   フッター (Footer) - 暗い背景ではフォーカスリングを白系に差し替える
-   -------------------------------------------------------------------------- */
 .site-footer {
   background-color: var(--color-footer-bg);
   color: var(--color-footer-text);
@@ -980,9 +889,6 @@ tbody tr:hover > * {
   font-size: var(--font-size-xs);
 }
 
-/* --------------------------------------------------------------------------
-   印刷用スタイル (Print)
-   -------------------------------------------------------------------------- */
 @media print {
   body {
     background: #fff;
@@ -1004,9 +910,6 @@ tbody tr:hover > * {
   }
 }
 
-/* --------------------------------------------------------------------------
-   強制カラーモード (Windows ハイコントラストなど)
-   -------------------------------------------------------------------------- */
 @media (forced-colors: active) {
   .btn:not(.btn--text) {
     border: 2px solid ButtonText;
@@ -1016,9 +919,6 @@ tbody tr:hover > * {
   }
 }
 
-/* --------------------------------------------------------------------------
-   レスポンシブ対応
-   -------------------------------------------------------------------------- */
 @media (min-width: 769px) and (max-width: 1024px) {
   .grid--3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1028,7 +928,7 @@ tbody tr:hover > * {
 @media (max-width: 768px) {
   .site-header__inner {
     flex-direction: column;
-    padding-top: 1rem; /* 左右は .container の余白をそのまま使う */
+    padding-top: 1rem;
     padding-bottom: 1rem;
     gap: 0.75rem;
   }
